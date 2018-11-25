@@ -21,7 +21,7 @@ export class JsonService {
 
 
   public saveJsonFile = (json: Object[]): void => {
-    this.http.post('http://localhost:3000/api/upload', json).toPromise().then(_res => {
+    this.http.post('http://noel.qubix.fr:33333/api/upload', json).toPromise().then(_res => {
     }).catch(err => {
       console.log('POST ERROR', err);
     });
