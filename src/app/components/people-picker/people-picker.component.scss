@@ -1,0 +1,22 @@
+:host(app-people-picker) {
+  #peoplePicked {
+    font-weight: bold;
+  }
+
+  #spinnerContainer {
+    height    : 200px;
+    margin-top: 50px;
+  }
+
+  #showPicked {
+    margin-top: 50px;
+  }
+
+  ngx-spinner {
+    ::ng-deep {
+      .loading-text {
+        margin-top: 60px;
+      }
+    }
+  }
+}

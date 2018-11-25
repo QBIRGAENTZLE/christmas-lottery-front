@@ -1,0 +1,27 @@
+<div id="themePicker">
+  <div class="row">
+    <div class="col-12 text-center">
+      <button *ngIf="!disableButton" class="btn btn-primary" (click)="pickThemes();">Tirer les thèmes</button>
+    </div>
+  </div>
+
+  <div *ngIf="showThemesPicked" id="showThemesPicked" class="row">
+    <div class="col-12 text-center">
+      Ayant comme thème(s) <span class="theme-picked">{{ themesPicked[0] }}</span> <span *ngIf="themesPicked.length === 2"> et <span class="theme-picked">{{ themesPicked[1] }}</span></span>
+
+
+    </div>
+    <div class="col-12 text-center">
+      <button class="btn btn-primary" (click)="backHome();">Retour à l'accueil</button>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="!showThemesPicked">
+    <div class="col-12" id="spinnerContainer">
+      <ngx-spinner bdColor="#dddddd" size="large" color="#ff0000" type="square-jelly-box">
+        <p style="font-size: 20px; color: black">Tirage des thèmes en cours...</p>
+      </ngx-spinner>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-12">
+    <label for="">Entrez votre nom ci-dessous</label>
+  </div>
+  <div class="col-8">
+    <input class="form-control" type="text" [(ngModel)]="gamer">
+  </div>
+  <div class="col-4">
+    <button class="btn btn-primary" (click)="play();">Valider</button>
+  </div>
+
+  <div id="alertArea" class="col-8" *ngIf="alreadyPlay || nameInvalid">
+    <div *ngIf="alreadyPlay" class="alert alert-danger">Cette personne a déjà joué !</div>
+    <div *ngIf="nameInvalid" class="alert alert-danger">Nom invalide !</div>
+  </div>
+</div>

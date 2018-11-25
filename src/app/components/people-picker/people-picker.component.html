@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-12 text-center">
+    <button *ngIf="!disableButton" class="btn btn-primary" (click)="pick();">Tirer une personne</button>
+  </div>
+</div>
+
+<div *ngIf="showPicked" id="showPicked" class="row">
+  <div class="col-12 text-center">
+    Tu dois offrir un cadeau à <span id="peoplePicked">{{peoplePicked.name}}</span>
+  </div>
+</div>
+
+<div class="row" *ngIf="!showPicked">
+  <div class="col-12" id="spinnerContainer">
+    <ngx-spinner bdColor="#dddddd" size="large" color="#ffff00" type="pacman">
+      <p style="font-size: 20px; color: black">Tirage d'une personne en cours...</p>
+    </ngx-spinner>
+  </div>
+</div>
+
+<app-theme-picker *ngIf="showPicked"></app-theme-picker>

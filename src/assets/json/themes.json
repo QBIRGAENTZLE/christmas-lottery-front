@@ -1,0 +1,22 @@
+[{
+    "name": "Etoile",
+    "childTheme": false
+  },
+  {
+    "name": "Bleu",
+    "childTheme": false
+  }, {
+    "name": "Pierre",
+    "childTheme": false
+  }, {
+    "name": "A",
+    "childTheme": false
+  }, {
+    "name": "Sport",
+    "childTheme": true
+  },
+  {
+    "name": "Rouge",
+    "childTheme": true
+  }
+]

@@ -1,0 +1,113 @@
+[{
+  "id": 1,
+  "name": "Quentin",
+  "peoplePicked": "Sylvie",
+  "isPicked": false,
+  "cantPick": [3, 4],
+  "themesPicked": ["Bleu", "Etoile"],
+  "isChild": false
+}, {
+  "id": 2,
+  "name": "Cassandre",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [3, 4],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 3,
+  "name": "Yolande",
+  "peoplePicked": "Richard",
+  "isPicked": false,
+  "cantPick": [1, 2, 4],
+  "themesPicked": ["A", "Etoile"],
+  "isChild": false
+}, {
+  "id": 4,
+  "name": "Jean-Marc",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [1, 2, 3],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 5,
+  "name": "Sylvie",
+  "peoplePicked": null,
+  "isPicked": true,
+  "cantPick": [6],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 6,
+  "name": "Richard",
+  "peoplePicked": null,
+  "isPicked": true,
+  "cantPick": [5],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 7,
+  "name": "Benjamin",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [8],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 8,
+  "name": "Sabrina",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [7],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 9,
+  "name": "Fanny",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [10],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 10,
+  "name": "Florent",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [9],
+  "themesPicked": null,
+  "isChild": false
+}, {
+  "id": 11,
+  "name": "Justin",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [12],
+  "themesPicked": null,
+  "isChild": true
+}, {
+  "id": 12,
+  "name": "Tess",
+  "peoplePicked": null,
+  "isPicked": true,
+  "cantPick": [11],
+  "themesPicked": null,
+  "isChild": true
+}, {
+  "id": 13,
+  "name": "Raphael",
+  "peoplePicked": "Tess",
+  "isPicked": false,
+  "cantPick": [14],
+  "themesPicked": ["Sport"],
+  "isChild": true
+}, {
+  "id": 14,
+  "name": "Gaetan",
+  "peoplePicked": null,
+  "isPicked": false,
+  "cantPick": [13],
+  "themesPicked": null,
+  "isChild": true
+}]
