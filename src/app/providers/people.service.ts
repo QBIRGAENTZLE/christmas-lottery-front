@@ -6,7 +6,7 @@ import { People } from '../models/people';
 
 import { JsonService } from '../providers/json.service';
 
-const accents = require('remove-accents');
+import * as accents from 'remove-accents';
 
 @Injectable({
   providedIn: 'root'

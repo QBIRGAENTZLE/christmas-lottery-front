@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const router = express.Router();
 
-const DIR = './src/assets/json';
+const DIR = './assets/json';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
