@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { GameService } from '../../providers/game.service';
+import { GameService } from '../../providers/game/game.service';
 
 import { People } from '../../models/people';
 
@@ -11,7 +11,7 @@ import { People } from '../../models/people';
   templateUrl: './people-picker.component.html',
   styleUrls: ['./people-picker.component.scss']
 })
-export class PeoplePickerComponent implements OnInit {
+export class PeoplePickerComponent {
 
   public disableButton = false;
 
@@ -22,9 +22,6 @@ export class PeoplePickerComponent implements OnInit {
     private gameService: GameService,
     private spinner: NgxSpinnerService
   ) { }
-
-  ngOnInit() {
-  }
 
   public pick = (): void => {
     this.disableButton = true;

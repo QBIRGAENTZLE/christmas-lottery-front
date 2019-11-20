@@ -2,16 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // EXTERNAL IMPORTS
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 // PROVIDERS IMPORTS
-import { GameService } from './providers/game.service';
-import { PeopleService } from './providers/people.service';
-import { ThemeService } from './providers/theme.service';
+import { GameService } from './providers/game/game.service';
+import { HttpService } from './providers/http/http.service';
+import { PeopleService } from './providers/people/people.service';
+import { ThemeService } from './providers/theme/theme.service';
 
 // ROUTES IMPORT
 import { APP_ROUTES } from './app.routes';
@@ -32,7 +33,7 @@ import { ThemePickerComponent } from './components/theme-picker/theme-picker.com
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     NgbModule,
     NgxSpinnerModule,
     RouterModule.forRoot(APP_ROUTES, {
@@ -41,6 +42,7 @@ import { ThemePickerComponent } from './components/theme-picker/theme-picker.com
   ],
   providers: [
     GameService,
+    HttpService,
     PeopleService,
     ThemeService
   ],

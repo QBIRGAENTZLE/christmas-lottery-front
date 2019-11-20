@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { find, filter } from 'lodash';
-
-import { People } from '../models/people';
-
-import { JsonService } from '../providers/json.service';
+import { People } from '../../models/people';
+import { HttpService } from '../http/http.service';
 
 import * as accents from 'remove-accents';
 
@@ -16,7 +13,7 @@ export class PeopleService {
   private peopleList: People[] = [];
 
   constructor(
-    private jsonService: JsonService
+    private httpService: HttpService
   ) {
   }
 
@@ -36,7 +33,7 @@ export class PeopleService {
   }
 
   public isNameValid = (name: string): boolean => {
-    const people = find(this.peopleList, p => {
+    const people = this.peopleList.find(p => {
       return this.sanitizeName(p.name) === this.sanitizeName(name);
     });
 
@@ -56,7 +53,7 @@ export class PeopleService {
   }
 
   public getPeopleFromName = (name: string): People => {
-    const people = find(this.peopleList, p => {
+    const people = this.peopleList.find(p => {
       return this.sanitizeName(p.name) === this.sanitizeName(name);
     });
 
@@ -71,28 +68,29 @@ export class PeopleService {
     return this.peopleList;
   }
 
-  public getAdultList = (): Promise<People[]> => {
-    return this.jsonService.getJsonFile('peoples').then(jsonPeople => {
-      const tmpPeopleList = jsonPeople;
-      return filter(tmpPeopleList, (people) => {
-        return !people.isChild;
-      });
+  public async getAdultList(): Promise<People[]> {
+    await this.loadPeopleList();
+
+    return this.peopleList.filter(p => {
+      return !p.isChild;
     });
   }
 
-  public getChildList = (): Promise<People[]> => {
-    return this.jsonService.getJsonFile('peoples').then(jsonPeople => {
-      const tmpPeopleList = jsonPeople;
-      return filter(tmpPeopleList, (people) => {
-        return people.isChild;
-      });
+  public async getChildList(): Promise<People[]> {
+    await this.loadPeopleList();
+
+    return this.peopleList.filter(p => {
+      return p.isChild;
     });
   }
 
-  public setPeopleList = (): void => {
-    this.jsonService.getJsonFile('peoples').then((jsonPeople) => {
-      this.peopleList = jsonPeople;
-    });
+  public async loadPeopleList(): Promise<boolean> {
+    return this.httpService.getAll('peoples').then((list: People[]) => {
+      this.peopleList = list;
 
+      return new Promise(resolve => {
+        resolve(true);
+      });
+    });
   }
 }

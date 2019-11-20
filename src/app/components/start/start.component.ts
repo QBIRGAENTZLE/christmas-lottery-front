@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { GameService } from '../../providers/game.service';
-import { PeopleService } from '../../providers/people.service';
-import { ThemeService } from '../../providers/theme.service';
+import { GameService } from '../../providers/game/game.service';
+import { PeopleService } from '../../providers/people/people.service';
+import { ThemeService } from '../../providers/theme/theme.service';
 
 import { People } from '../../models/people';
 
@@ -30,11 +30,11 @@ export class StartComponent {
     this.themeService.reset();
     this.gameService.reset();
 
-    this.peopleService.setPeopleList();
+    this.peopleService.loadPeopleList();
     this.themeService.loadThemeList();
   }
 
-  public play = (): void => {
+  public async play(): Promise<void> {
     this.nameInvalid = false;
     this.alreadyPlay = false;
 

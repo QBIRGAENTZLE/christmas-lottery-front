@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { GameService } from '../../providers/game.service';
+import { GameService } from '../../providers/game/game.service';
 
 @Component({
   selector: 'app-theme-picker',

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 
 import { findIndex } from 'lodash';
 
-import { JsonService } from './json.service';
-import { PeopleService } from './people.service';
-import { ThemeService } from './theme.service';
+import { HttpService } from '../http/http.service';
+import { PeopleService } from '../people/people.service';
+import { ThemeService } from '../theme/theme.service';
 
-import { People } from '../models/people';
-import { Theme } from '../models/theme';
+import { People } from '../../models/people';
+import { Theme } from '../../models/theme';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class GameService {
   private mustPickCantPickPeople = true;
 
   constructor(
-    private jsonService: JsonService,
+    private httpService: HttpService,
     private peopleService: PeopleService,
     private themeService: ThemeService
   ) {
@@ -39,8 +39,7 @@ export class GameService {
     this.themesPicked = [];
   }
 
-  public pickPeople = (): Promise<People> => {
-
+  public async pickPeople(): Promise<People> {
     if (this.currentGamer.isChild) {
       return this.peopleService.getChildList().then(childList => {
         this.peopleList = childList;
@@ -61,21 +60,10 @@ export class GameService {
   }
 
   private savePeoplePicked = (peoplePicked: People): void => {
-    this.jsonService.getJsonFile('peoples').then(peopleList => {
+    this.currentGamer.peoplePicked = peoplePicked.name;
+    peoplePicked.isPicked = true;
 
-      const indexPeoplePicked = findIndex(peopleList, people => {
-        return people.id === this.peoplePicked.id;
-      });
-      peopleList[indexPeoplePicked].isPicked = true;
-
-      const indexGamer = findIndex(peopleList, people => {
-        return people.id === this.currentGamer.id;
-      });
-      peopleList[indexGamer].peoplePicked = peoplePicked.name;
-
-      this.jsonService.saveJsonFile(peopleList);
-
-    });
+    this.httpService.savePeoplePicked(this.currentGamer, peoplePicked);
   }
 
   private pick = (): People => {
@@ -83,8 +71,8 @@ export class GameService {
       this.peoplePicked = this.peopleList[Math.floor(Math.random() * this.peopleList.length)];
     }
     while (
-      this.peoplePicked.id === this.currentGamer.id || this.peoplePicked.isPicked ||
-      (!this.mustPickCantPickPeople && this.currentGamer.cantPick.includes(this.peoplePicked.id))
+      this.peoplePicked._id === this.currentGamer._id || this.peoplePicked.isPicked ||
+      (!this.mustPickCantPickPeople && this.currentGamer.cantPick.includes(this.peoplePicked._id))
     );
 
     return this.peoplePicked;
@@ -92,15 +80,14 @@ export class GameService {
 
   private checkWhoCanPick = (): void => {
     for (const people of this.peopleList) {
-
-      if (people.id !== this.currentGamer.id && !people.isPicked && !this.currentGamer.cantPick.includes(people.id)) {
+      if (people._id !== this.currentGamer._id && !people.isPicked && !this.currentGamer.cantPick.includes(people._id)) {
         this.mustPickCantPickPeople = false;
         break;
       }
     }
   }
 
-  public pickThemes = (): string[] => {
+  public pickThemes(): string[] {
     if (this.currentGamer.isChild) {
       this.themesList = this.themeService.getChildThemesList();
     } else {
@@ -119,21 +106,16 @@ export class GameService {
 
       this.themesPicked.push(secondTheme);
     }
+
     this.saveThemesPicked();
+
     return this.themesPicked;
   }
 
   private saveThemesPicked = (): void => {
-    this.jsonService.getJsonFile('peoples').then(peopleList => {
+    this.currentGamer.themesPicked = this.themesPicked;
 
-      const indexGamer = findIndex(peopleList, people => {
-        return people.id === this.currentGamer.id;
-      });
-      peopleList[indexGamer].themesPicked = this.themesPicked;
-
-      this.jsonService.saveJsonFile(peopleList);
-
-    });
+    this.httpService.saveThemePicked(this.currentGamer);
   }
 
   public setGamer = (people: People): void => {

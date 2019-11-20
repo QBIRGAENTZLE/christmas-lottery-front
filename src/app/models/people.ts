@@ -2,16 +2,16 @@ import { Theme } from './theme';
 
 export class People {
 
-  id: number;
+  _id: string;
   name: string;
   peoplePicked: string;
   isPicked: boolean;
-  cantPick: number[];
+  cantPick: string[];
   themesPicked: string[];
   isChild: boolean;
 
   constructor(people) {
-    this.id = people.id;
+    this._id = people._id;
     this.name = people.name;
     this.peoplePicked = people.peoplePicked;
     this.isPicked = people.isPicked;
