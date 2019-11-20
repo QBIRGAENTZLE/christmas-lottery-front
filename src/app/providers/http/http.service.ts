@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { People } from '../../models/people';
+
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  private url = 'http://localhost:3000';
+  private url = environment.api.url;
 
   private httpOptions = {
     headers: new HttpHeaders({
