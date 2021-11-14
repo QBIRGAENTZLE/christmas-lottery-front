@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // EXTERNAL IMPORTS
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +33,7 @@ import { ThemePickerComponent } from './components/theme-picker/theme-picker.com
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     NgbModule,

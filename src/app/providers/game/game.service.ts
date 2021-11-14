@@ -94,7 +94,14 @@ export class GameService {
       this.themesList = this.themeService.getAdultThemesList();
     }
 
-    const firstTheme = this.themesList[Math.floor(Math.random() * this.themesList.length)].name;
+    let firstTheme: string
+
+    if (this.currentGamer.peoplePicked === 'Christelle') {
+      firstTheme = 'Bricolage / Jardinage'
+    } else {
+      firstTheme = this.themesList[Math.floor(Math.random() * this.themesList.length)].name;
+    }
+
     this.themesPicked.push(firstTheme);
 
     if (!this.currentGamer.isChild) {
