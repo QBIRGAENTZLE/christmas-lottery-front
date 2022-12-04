@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -20,7 +21,9 @@ export class PeoplePickerComponent {
 
   constructor(
     private gameService: GameService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
+
   ) { }
 
   public pick = (): void => {
@@ -41,5 +44,10 @@ export class PeoplePickerComponent {
 
 
   }
+
+    public backHome = (): void => {
+    this.router.navigate(['/']);
+  }
+
 
 }

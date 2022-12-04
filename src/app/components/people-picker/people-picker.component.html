@@ -8,6 +8,10 @@
   <div class="col-12 text-center">
     Tu dois offrir un cadeau à <span id="peoplePicked">{{peoplePicked.name}}</span>
   </div>
+
+      <div class="col-12 text-center">
+      <button class="btn btn-primary" (click)="backHome();">Retour à l'accueil</button>
+    </div>
 </div>
 
 <div class="row" *ngIf="!showPicked">
@@ -18,4 +22,5 @@
   </div>
 </div>
 
+<!--
 <app-theme-picker *ngIf="showPicked"></app-theme-picker>
